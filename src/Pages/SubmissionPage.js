@@ -1,8 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
+import { useDispatch } from "react-redux";
+import { addSubmission } from "../Components/submissionSlice";
 
 const SubmissionPage = () => {
   const [image, setImage] = useState(null);
+  const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
     title: "",
@@ -26,8 +30,8 @@ const SubmissionPage = () => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(formData);
-    localStorage.setItem('formData', JSON.stringify(formData))
+    dispatch(addSubmission(formData))
+    alert('submission done')
   }
 
   
@@ -124,6 +128,7 @@ const SubmissionPage = () => {
 
         <button>Upload Submission</button>
       </form>
+      <Link to = "/">back to home</Link>
     </div>
   );
 };

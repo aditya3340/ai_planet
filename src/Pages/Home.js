@@ -1,21 +1,45 @@
-import React, { useState } from 'react'
-
-import Hero from '../Components/Hero'
-import Navbar from '../Components/Navbar'
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Card from "../Components/Card";
+import Hero from "../Components/Hero";
+import Navbar from "../Components/Navbar";
 
 const Home = () => {
+  const submissions = useSelector((state) => state.submissions.data);
 
-  const data = JSON.parse(localStorage.getItem("formData"));
-  
+  //to toggle between all and fav submissions
+  const [flag, setFlag] = useState(false);
 
-  console.log(data)
+  const subEl = submissions.map((item) => {
+    return (
+      <div key={item.title}>
+        <Card sub={item} />
+      </div>
+    );
+  });
+
+  console.log(flag);
+
   return (
     <div>
-        <Navbar/>
-        <Hero/>
-        <img src= {data.coverImage}/>
-    </div>
-  )
-}
+      <Navbar />
+      <Hero />
 
-export default Home
+      <div className="maxWidthDiv">
+        <button className="home-btn" onClick={() => setFlag(false)}>
+          All Submissions
+        </button>
+        <button className="home-btn" onClick={() => setFlag(true)}>
+          Favourite Submissions
+        </button>
+      </div>
+      {!flag ? (
+        submissions.length === 0 ? <h1>No submissions Yet</h1> : <div className="container">{subEl}</div>
+      ) : (
+        <h1> Favourites</h1>
+      )}
+    </div>
+  );
+};
+
+export default Home;
