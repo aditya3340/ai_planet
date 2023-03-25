@@ -54,7 +54,7 @@ body {
 
 
 .flex-container > img {
- width: 60vmin;
+ width: 40vmin;
 }
 @media  (max-width: 450px) {
   .flex-container > img {
