@@ -85,7 +85,7 @@ const SubmissionPage = () => {
             }
           }}
         />
-        {image && <img src={image} />}
+        
         <br/>
         <label htmlFor="hackathonName">Hackathon Name : </label>
         <input
