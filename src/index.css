@@ -23,6 +23,7 @@ body {
 .maxWidthDiv {
   max-width: 85%;
   margin: auto;
+  
 }
 
 .hero {
@@ -99,6 +100,8 @@ body {
   font-size: 1.15rem;
   padding-block: 10px;  
   padding-inline: 24px;
+  background-color: white;
+  text-align: center;
 }
 .home-btn:focus {
   border-bottom: 3px solid #44924C;
