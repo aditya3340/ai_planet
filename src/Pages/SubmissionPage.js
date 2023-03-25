@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addSubmission } from "../Components/submissionSlice";
 
 const SubmissionPage = () => {
-  const [image, setImage] = useState(null);
+  
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
@@ -75,7 +75,7 @@ const SubmissionPage = () => {
           name="coverImage"
           onChange={({ target: { files } }) => {
             if (files) {
-              setImage(URL.createObjectURL(files[0]));
+              
               setFormData((prevState) => {
                 return {
                   ...prevState,
