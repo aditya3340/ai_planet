@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../Components/Card";
 import Hero from "../Components/Hero";
@@ -9,6 +9,10 @@ const Home = () => {
 
   //to toggle between all and fav submissions
   const [flag, setFlag] = useState(false);
+
+  useEffect(()=> {
+    setFlag(false)
+  }, [])
 
   const subEl = submissions.map((item) => {
     return (
@@ -34,9 +38,9 @@ const Home = () => {
         </button>
       </div>
       {!flag ? (
-        submissions.length === 0 ? <h1>No submissions Yet</h1> : <div className="container">{subEl}</div>
+        submissions.length === 0 ? <h1 className="navbar">No submissions Yet</h1> : <div className="container">{subEl}</div>
       ) : (
-        <h1> Favourites</h1>
+        <h1 className="navbar"> Favourites</h1>
       )}
     </div>
   );

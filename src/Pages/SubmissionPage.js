@@ -4,9 +4,9 @@ import Navbar from "../Components/Navbar";
 import { useDispatch } from "react-redux";
 import { addSubmission } from "../Components/submissionSlice";
 
+
 const SubmissionPage = () => {
-  
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     title: "",
@@ -19,6 +19,7 @@ const SubmissionPage = () => {
     githubRepository: "",
   });
 
+  console.log(formData.coverImage)
   function handleChange(e) {
     setFormData((prevState) => {
       return {
@@ -29,106 +30,141 @@ const SubmissionPage = () => {
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    dispatch(addSubmission(formData))
-    alert('submission done')
+    e.preventDefault();
+    dispatch(addSubmission(formData));
+    alert("submission done");
   }
-
-  
 
   return (
     <div>
       <Navbar />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor="summary">Summary</label>
-        <input
-          id="summary"
-          type="text"
-          name="summary"
-          value={formData.summary}
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor="description">Description : </label>
-        <input
-          id="description"
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-        <br />
-        <label htmlFor="cover">Cover Image : </label>
-        <input
-          id="cover"
-          type="file"
-          accept="image/*"
-          name="coverImage"
-          onChange={({ target: { files } }) => {
-            if (files) {
-              
-              setFormData((prevState) => {
-                return {
-                  ...prevState,
-                  coverImage: URL.createObjectURL(files[0]),
-                };
-              });
-            }
-          }}
-        />
-        
-        <br/>
-        <label htmlFor="hackathonName">Hackathon Name : </label>
-        <input
-          id="hackathonName"
-          type="text"
-          name="hackathonName"
-          value={formData.hackathonName}
-          onChange={handleChange}
-        />
+      <div className="submission">
+        <h1>New Hackathon Submission </h1>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">Title</label>
+          <br />
+          <input
+            className="inputs"
+            id="title"
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+          <br />
+          <label htmlFor="summary">Summary</label>
+          <br />
+          <input
+            className="inputs"
+            id="summary"
+            type="text"
+            name="summary"
+            value={formData.summary}
+            onChange={handleChange}
+          />
+          <br />
+          <label className="label" htmlFor="description">
+            Description :
+          </label>
+          <br />
+          <input
+            className="inputs"
+            id="description"
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          <br />
+          <label className="label" htmlFor="description">
+            Cover Image
+          </label>
+          
+          <div style={{color: "gray"}}>
+          Minimum resolution: 360px  X 360px
+          </div>
+           <br/>
+          <label htmlFor="cover" className="image-label">
+          
+            
+            <input
+              id="cover"
+              type="file"
+              accept="image/*"
+              name="coverImage"
+              className="image-input"
+              onChange={({ target: { files } }) => {
+                if (files) {
+                  setFormData((prevState) => {
+                    return {
+                      ...prevState,
+                      coverImage: URL.createObjectURL(files[0]),
+                    };
+                  });
+                }
+              }}
+            />
+            
+          </label>
+          {formData.coverImage !== '' && <p style={{color: "red"}}>Image Added</p>}
+          <br />
+          <label htmlFor="hackathonName">Hackathon Name : </label>
+          <br />
+          <input
+            className="inputs"
+            id="hackathonName"
+            type="text"
+            name="hackathonName"
+            value={formData.hackathonName}
+            onChange={handleChange}
+          />
 
-        <br />
-        <label htmlFor="startDate">Start Date :</label>
-        <input
-          type="date"
-          id="startDate"
-          name="hackathonStartDate"
-          value={formData.hackathonStartDate}
-          onChange={handleChange}
-        />
-        
-        <label htmlFor="endDate">End Date :</label>
-        <input
-          type="date"
-          id="endDate"
-          name="hackathonEndDate"
-          value={formData.hackathonEndDate}
-          onChange={handleChange}
-        />
-        
+          <br />
+          <div className="dates-label">
+            <div className="d-div">
+              <label htmlFor="startDate">Start Date :</label>
+            </div>
+            <div className="d-div">
+              <label htmlFor="endDate">End Date :</label>
+            </div>
+          </div>
+          <br />
+          <div className="dates">
+            <input
+              className="date-inputs"
+              type="date"
+              id="startDate"
+              name="hackathonStartDate"
+              value={formData.hackathonStartDate}
+              onChange={handleChange}
+            />
 
-        <br/>
-        <label htmlFor="githubRepository">Github Repository : </label>
-        <input
-          id="githubRepository"
-          type="text"
-          name="githubRepository"
-          value={formData.githubRepository}
-          onChange={handleChange}
-        />
+            <input
+              className="date-inputs"
+              type="date"
+              id="endDate"
+              name="hackathonEndDate"
+              value={formData.hackathonEndDate}
+              onChange={handleChange}
+            />
+          </div>
 
-        <button>Upload Submission</button>
-      </form>
-      <Link to = "/">back to home</Link>
+          <br />
+          <label htmlFor="githubRepository">Github Repository : </label>
+          <br />
+          <input
+            className="inputs"
+            id="githubRepository"
+            type="text"
+            name="githubRepository"
+            value={formData.githubRepository}
+            onChange={handleChange}
+          />
+
+          <button className="submit-btn">Upload Submission</button>
+        </form>
+        <Link to="/"><button className="submit-btn" style={{marginBottom : "10px", backgroundColor: "#44924C"}}>Home Page</button></Link>
+      </div>
     </div>
   );
 };
