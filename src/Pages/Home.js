@@ -4,19 +4,22 @@ import Card from "../Components/Card";
 import Hero from "../Components/Hero";
 import Navbar from "../Components/Navbar";
 
+
 const Home = () => {
   const submissions = useSelector((state) => state.submissions.data);
 
   //to toggle between all and fav submissions
   const [flag, setFlag] = useState(false);
+  
 
-  useEffect(()=> {
+
+  useEffect(()=> {  
     setFlag(false)
   }, [])
 
   const subEl = submissions.map((item) => {
     return (
-      <div key={item.title}>
+      <div key={item.id} >
         <Card sub={item} />
       </div>
     );

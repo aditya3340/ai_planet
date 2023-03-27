@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { useDispatch } from "react-redux";
 import { addSubmission } from "../Components/submissionSlice";
+import { nanoid } from "nanoid";
 
 
 const SubmissionPage = () => {
   const dispatch = useDispatch();
+  const submissionId = nanoid()
 
   const [formData, setFormData] = useState({
+    id: "",
     title: "",
     summary: "",
     description: "",
@@ -24,6 +27,7 @@ const SubmissionPage = () => {
     setFormData((prevState) => {
       return {
         ...prevState,
+        id: submissionId,
         [e.target.name]: e.target.value,
       };
     });
