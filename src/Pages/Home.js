@@ -34,13 +34,13 @@ const Home = () => {
       <Hero />
       <Box maxW ={"85%"} margin={"auto"} marginTop={"10px"}>
       <SimpleGrid columns={[1,2,2]} maxW={{sm: "auto", md:"50%", lg:"40%"}}>
-        <Button  paddingInline={"20px"} onClick={() => setFlag(false)}><Text>All Submissions</Text></Button>
+        <Button m={"10px"} paddingInline={"20px"} onClick={() => setFlag(false)}><Text>All Submissions</Text></Button>
         <Button colorScheme="blue" paddingInline={"20px"} onClick={() => setFlag(true)}><Text>Favourite Submissions</Text></Button>
       </SimpleGrid>
       {!flag ? (
-        submissions.length === 0 ? <Heading  >No submissions Yet</Heading> : <Box className="container">{subEl}</Box>
+        submissions.length === 0 ? <Heading marginTop={"10px"}  >No submissions Yet</Heading> : <Box className="container">{subEl}</Box>
       ) : (
-        <Heading className="navbar"> Favourites</Heading>
+        <Heading marginTop={"10px"} > Favourites</Heading>
       )}
       </Box>
       {/* <div className="maxWidthDiv">
