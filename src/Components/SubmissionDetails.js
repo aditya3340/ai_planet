@@ -11,7 +11,7 @@ const SubmissionDetails = () => {
   const { id } = useParams();
 
   const filteredArray = data.filter((item) => item.id === id);
-
+ 
   console.log(filteredArray);
   const dispatch = useDispatch();
 

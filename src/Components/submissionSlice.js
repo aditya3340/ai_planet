@@ -13,7 +13,8 @@ export const submissionSlice = createSlice({
       state.data.push(action.payload);
     },
     removeSubmission: (state, action) => {
-      state.data.splice(action.payload, 1)
+      // state.data.filter((sub) => sub.id !== action.payload.id)
+      state.data.splice(action.payload.id - 1, 1); 
     }
   },
 });
