@@ -17,7 +17,7 @@ const Hero = () => {
     <Box bgColor={"green.400"} padding={"20px"}>
       <Box maxW={"85%"} margin={"auto"}>
         <SimpleGrid columns={[null, 1, 2]}>
-          <Box margin={"auto"} maxW={"85%"}>
+          <Box margin={"auto"} maxW={{ sm: "100%" ,md: "85%"}}>
             <Heading fontSize={["3xl","4xl","5xl"]}>Hackathon Submissions</Heading>
             <Spacer h={7}></Spacer>
             <Text>
@@ -32,6 +32,7 @@ const Hero = () => {
                 <Text>Upload Submission</Text>
               </Button>
             </Link>
+            <Spacer h={7}></Spacer>
           </Box>
 
           <Image
