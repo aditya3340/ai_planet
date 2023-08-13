@@ -9,7 +9,7 @@ import {
   Spacer,
   Text,
   Box,
-  Flex,
+
 } from "@chakra-ui/react";
 
 const Hero = () => {
